@@ -1,0 +1,19 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "tagets": {
+          "electron": 1.4,
+          "node": 6
+        }
+      }
+    ],
+    "stage-0",
+    "es2015",
+    "react"
+  ],
+  "plugins": [
+    "transform-runtime"
+  ]
+}
