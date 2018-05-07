@@ -1,6 +1,6 @@
 {
   "name": "hyper-foobar2000",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Control foobar2000 through Hyper using the COM Automation Server.",
   "main": "index.js",
   "author": "Olivia Trewin <zancoproductions@gmail.com>",
