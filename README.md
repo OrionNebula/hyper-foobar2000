@@ -17,12 +17,7 @@ module.exports = {
 }
 ```
 
-Make sure to execute the following after installing the package:
-```bash
-    $ ./node_modules/.bin/electron-rebuild
-```
-
-This will makes sure the required native binaries are compiled with the right version of NodeJs.
+If you have trouble with the initial install, use yarn to install the package instead.
 
 ## Configuration
 
