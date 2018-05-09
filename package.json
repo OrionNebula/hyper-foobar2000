@@ -1,6 +1,6 @@
 {
   "name": "hyper-foobar2000",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Control foobar2000 through Hyper using the COM Automation Server.",
   "main": "index.js",
   "author": "Olivia Trewin <zancoproductions@gmail.com>",
@@ -14,7 +14,7 @@
     "build": "babel ./src --out-dir ./dist --copy-files",
     "build:watch": "babel --watch ./src --out-dir ./dist --source-maps --copy-files",
     "prepublishonly": "npm run build",
-    "install": "electron-rebuild"
+    "install": "electron-rebuild --version 1.8.4"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
@@ -23,7 +23,6 @@
     "lodash.isequal": "^4.5.0",
     "tasklist": "^3.1.0",
     "winax": "^1.0.8",
-    "electron": "1.8.4",
     "electron-rebuild": "^1.7.3"
   },
   "devDependencies": {
