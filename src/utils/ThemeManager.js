@@ -14,6 +14,13 @@ const defaultTheme = `
   .hyper-foobar .hyper-foobar-track {
     color: #FFF;
   }
+
+  .hyper-foobar .hyper-foobar-art {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 10%;
+  }
 `
 
 const lightTheme = `
@@ -27,6 +34,13 @@ const lightTheme = `
 
   .hyper-foobar .hyper-foobar-track {
     color: #FFF;
+  }
+
+  .hyper-foobar .hyper-foobar-art {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 10%;
   }
 `
 
@@ -42,6 +56,13 @@ const darkTheme = `
   .hyper-foobar .hyper-foobar-track {
     color: #000;
   }
+
+  .hyper-foobar .hyper-foobar-art {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 10%;
+  }
 `
 
 // foobar:track:6wYJJ8AEhgS2euFsuTvZ1g
@@ -56,6 +77,13 @@ const halloweenTheme = `
 
   .hyper-foobar .hyper-foobar-track {
     color: #D75C1B;
+  }
+
+  .hyper-foobar .hyper-foobar-art {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 10%;
   }
 `
 

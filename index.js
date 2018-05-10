@@ -7,7 +7,8 @@ exports.decorateConfig = config => {
     const hyperFoobar = Object.assign({
         position: 'bottom',
         margin: 'default',
-        controlsPosition: 'default'
+        controlsPosition: 'default',
+        showArt: true
     }, config.hyperFoobar);
 
     const { position, margin } = hyperFoobar;
@@ -24,7 +25,7 @@ exports.decorateConfig = config => {
             marginValue = margin;
     }
 
-    return Object.assign({}, config, {
+    return Object.assign({ hyperFoobar }, config, {
         css: `
             ${config.css || ''}
 

@@ -2,6 +2,7 @@ import isEqual from 'lodash.isequal'
 import IconFactory from '../components/Icon';
 import TrackInfoFactory from '../components/TrackInfo';
 import FoobarManager from '../lib/FoobarManager';
+import ArtFactory from '../components/Art';
 
 
 const HyperFoobarWidgetFactory = React => {
@@ -9,6 +10,7 @@ const HyperFoobarWidgetFactory = React => {
 
     const Icon = IconFactory(React);
     const TrackInfo = TrackInfoFactory(React);
+    const Art = ArtFactory(React);
 
     const skipActions = {
         previous: 'PREV',
@@ -155,7 +157,8 @@ const HyperFoobarWidgetFactory = React => {
 
             const {
                 pluginConfig: {
-                    controlsPosition
+                    controlsPosition,
+                    showArt
                 }
             } = this.props;
 
@@ -213,15 +216,18 @@ const HyperFoobarWidgetFactory = React => {
             const {
               widgetStyle
             } = styles
-      
+
             return (
-              <div style={widgetStyle}>
-                {this.renderControls()}
-      
-                <TrackInfo
-                  track={track}
-                />
-              </div>
+              <span>
+                {this.props.pluginConfig.showArt ? <Art track={track} /> : ''}
+                <div style={widgetStyle}>
+                    {this.renderControls()}
+        
+                    <TrackInfo
+                    track={track}
+                    />
+                </div>
+              </span>
             )
           }
     };

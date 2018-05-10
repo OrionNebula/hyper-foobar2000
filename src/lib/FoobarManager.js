@@ -1,5 +1,7 @@
 import winax from 'winax'
 import tasklist from 'tasklist'
+import path from 'path'
+import fs from 'fs'
 
 class FoobarManager {
     constructor () {
@@ -7,8 +9,8 @@ class FoobarManager {
 
     initialCheck() {
         return new Promise((f, r) => {
-            tasklist().then(tasks => {
-                var res = tasks.filter(x => x.imageName === 'foobar2000.exe').length > 0;
+            tasklist({filter: [ 'Imagename eq foobar2000.exe' ]}).then(tasks => {
+                var res = tasks.length > 0;
                 if(res)
                     this.foobar = winax.Object('Foobar2000.Application.0.7').Playback;
                 f(res);
@@ -71,9 +73,15 @@ class FoobarManager {
 
     generateTrack() {
         try {
+            let coverDir = path.dirname(this.foobar.FormatTitle('%path%'));
+            let coverName = fs.readdirSync(coverDir).filter(x => x.toLowerCase().startsWith('cover') || x.toLowerCase().startsWith('folder') || x.toLowerCase().startsWith('front'))[0];
             return {
                 name: this.foobar.FormatTitle('%title%'),
-                artist: this.foobar.FormatTitle('%artist%')
+                artist: this.foobar.FormatTitle('%artist%'),
+                cover: coverName ? path.format({ 
+                    dir: coverDir,
+                    name: coverName
+                }) : undefined
             };
         } catch(err) {
             this.foobar = null;
