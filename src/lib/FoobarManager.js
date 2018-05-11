@@ -36,6 +36,7 @@ class FoobarManager {
     }
 
     togglePlayPause () {
+        var tThis = this;
         const { hyperFoobar, getState } = this;
 
         return new Promise((outerFulfil, outerReject) => {
@@ -49,12 +50,13 @@ class FoobarManager {
             request(options, (error, response, body) => {
                 if(error) reject(error);
 
-                return getState();
+                return getState.call(tThis);
             });
         });
     }
 
     previousTrack () {
+        var tThis = this;
         const { hyperFoobar, getState } = this;
 
         return new Promise((outerFulfil, outerReject) => {
@@ -68,12 +70,13 @@ class FoobarManager {
             request(options, (error, response, body) => {
                 if(error) reject(error);
 
-                return getState();
+                return getState.call(tThis);
             });
         });
     }
 
     nextTrack () {
+        var tThis = this;
         const { hyperFoobar, getState } = this;
 
         return new Promise((outerFulfil, outerReject) => {
@@ -87,7 +90,7 @@ class FoobarManager {
             request(options, (error, response, body) => {
                 if(error) reject(error);
 
-                return getState();
+                return getState.call(tThis);
             });
         });
     }
