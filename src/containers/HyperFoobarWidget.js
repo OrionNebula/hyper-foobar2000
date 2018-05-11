@@ -39,7 +39,7 @@ const HyperFoobarWidgetFactory = React => {
                 }
             };
 
-            this.foobarManager = new FoobarManager();
+            this.foobarManager = new FoobarManager(props.pluginConfig);
         }
 
         performSoundCheck() {
@@ -54,25 +54,14 @@ const HyperFoobarWidgetFactory = React => {
                 return;
             }
 
-            foobarManager.isRunning()
-                .then(isRunning => {
-                    this.setState({ isRunning });
+            foobarManager.getState()
+                .then((state) => {
+                    this.setState({ isRunning: true });
 
-                    if(isRunning) {
-                        foobarManager.connect().then(({state}) => {
-                                this.setState({ isPlaying: (state === 'playing') })
-
-                                return foobarManager.getTrack();
-                            })
-                            .then(track => {
-                                this.setState({track});
-                            })
-                            .catch(() => {
-                                this.setState({ ...initialState });
-                            });
-                    } else {
-                        this.setState({ ...initialState });
-                    }
+                    this.setState({
+                        isPlaying: (state.state === 'playing'),
+                        track: state.track
+                    });
                 }).catch(() => {
                     this.setState({ ...initialState });
                 });
@@ -84,7 +73,10 @@ const HyperFoobarWidgetFactory = React => {
             if (isRunning) {
                 foobarManager.togglePlayPause()
                     .then(foobarState => {
-                        this.setState({isPlaying: (foobarState.state === 'playing')});
+                        this.setState({
+                            isPlaying: (foobarState.state === 'playing'),
+                            track: foobarState.track
+                        });
                     })
                     .catch(() => {
                         this.setState({ ...initialState });
@@ -109,8 +101,15 @@ const HyperFoobarWidgetFactory = React => {
 
             if (isRunning) {
                 this._getSkipPromise(skipAction)
-                    .then(track => this.setState({ track }))
-                    .catch(() => this.setState({ ...initialState }));
+                    .then(foobarState => {
+                        this.setState({
+                            isPlaying: (foobarState.state === 'playing'),
+                            track: foobarState.track
+                        });
+                    })
+                    .catch(() => {
+                        this.setState({ ...initialState });
+                    });
             }
         }
 
@@ -118,8 +117,6 @@ const HyperFoobarWidgetFactory = React => {
             if (!this.soundCheck) {
                 this.soundCheck = setInterval(() => this.performSoundCheck(), 500);
             }
-
-            this.foobarManager.initialCheck().then(isRunning => this.setState({ isRunning }));
 
             this.performSoundCheck();
         }

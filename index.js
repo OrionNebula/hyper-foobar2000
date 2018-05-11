@@ -8,7 +8,8 @@ exports.decorateConfig = config => {
         position: 'bottom',
         margin: 'default',
         controlsPosition: 'default',
-        showArt: true
+        showArt: true,
+        port: 8888
     }, config.hyperFoobar);
 
     const { position, margin } = hyperFoobar;
